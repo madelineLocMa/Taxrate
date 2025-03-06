@@ -26,6 +26,10 @@
             box-shadow: none; /* No drop shadow */
             min-height: 400px; /* Ensures chart has space */
         }
+        #taxRateChart {
+            width: 100%;
+            height: 500px; /* Ensures chart is visible */
+        }
     </style>
 </head>
 <body>
@@ -48,79 +52,25 @@
         var taxRatesMcKinney = [2.3, 2.25, 2.2, 2.15, 2.1, 2.05, 2.0, 1.95, 1.9, 1.85, 
                                 1.8, 1.75, 1.7, 1.65, 1.6, 1.55, 1.5, 1.45, 1.4, 1.35];
 
-        var traceCollin = {
-            x: years,
-            y: taxRatesCollin,
-            type: 'scatter',
-            mode: 'lines+markers',
-            marker: { color: '#971616', size: 8 },
-            line: { width: 3 },
-            name: 'Collin County'
-        };
-
-        var tracePlano = {
-            x: years,
-            y: taxRatesPlano,
-            type: 'scatter',
-            mode: 'lines+markers',
-            marker: { color: '#2478d9', size: 8 },
-            line: { width: 3 },
-            name: 'Plano'
-        };
-
-        var traceAllen = {
-            x: years,
-            y: taxRatesAllen,
-            type: 'scatter',
-            mode: 'lines+markers',
-            marker: { color: '#7a35d2', size: 8 },
-            line: { width: 3 },
-            name: 'Allen'
-        };
-
-        var traceFrisco = {
-            x: years,
-            y: taxRatesFrisco,
-            type: 'scatter',
-            mode: 'lines+markers',
-            marker: { color: '#d27830', size: 8 },
-            line: { width: 3 },
-            name: 'Frisco'
-        };
-        
-        var traceMcKinney = {
-            x: years,
-            y: taxRatesMcKinney,
-            type: 'scatter',
-            mode: 'lines+markers',
-            marker: { color: '#12772c', size: 8 },
-            line: { width: 3 },
-            name: 'McKinney'
-        };
+        var traces = [
+            { x: years, y: taxRatesCollin, type: 'scatter', mode: 'lines+markers', marker: { color: '#971616', size: 8 }, line: { width: 3 }, name: 'Collin County' },
+            { x: years, y: taxRatesPlano, type: 'scatter', mode: 'lines+markers', marker: { color: '#2478d9', size: 8 }, line: { width: 3 }, name: 'Plano' },
+            { x: years, y: taxRatesAllen, type: 'scatter', mode: 'lines+markers', marker: { color: '#7a35d2', size: 8 }, line: { width: 3 }, name: 'Allen' },
+            { x: years, y: taxRatesFrisco, type: 'scatter', mode: 'lines+markers', marker: { color: '#d27830', size: 8 }, line: { width: 3 }, name: 'Frisco' },
+            { x: years, y: taxRatesMcKinney, type: 'scatter', mode: 'lines+markers', marker: { color: '#12772c', size: 8 }, line: { width: 3 }, name: 'McKinney' }
+        ];
 
         var layout = {
             title: 'Historical Tax Rates (2005-2024)',
             xaxis: { title: 'Year' },
             yaxis: { title: 'Tax Rate (%)' },
-            plot_bgcolor: 'rgba(0,0,0,0)',  // Transparent background
-            paper_bgcolor: 'rgba(0,0,0,0)'  // Transparent background
+            plot_bgcolor: '#f0f0f0',  // Light gray (for debugging)
+            paper_bgcolor: '#f0f0f0'
         };
 
-        var modebarConfig = {
-            modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d', 'zoom2d', 'toImage', 'resetScale2d', 'toggleSpikelines'],
-            modeBarButtonsToAdd: [['zoomIn2d', 'zoomOut2d', 'resetScale2d', 'toImage', 'autoScale2d']],
-            displaylogo: false
+        window.onload = function() {
+            Plotly.newPlot('taxRateChart', traces, layout);
         };
-
-        Plotly.newPlot('taxRateChart', [traceCollin, tracePlano, traceAllen, traceFrisco, traceMcKinney], layout, modebarConfig);
-
-        // Force Plotly to resize correctly
-        window.addEventListener('load', function() {
-            Plotly.relayout('taxRateChart', {
-                width: document.getElementById('taxRateChart').clientWidth,
-                height: document.getElementById('taxRateChart').clientHeight
-            });
-        });
     </script>
 </body>
 </html>
