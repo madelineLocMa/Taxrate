@@ -15,7 +15,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: white;
         }
         .chart-container {
             width: 80%;
@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    <h2>Tax Rate History</h2>
+    <h2>Tax Rate History (2015-2022)</h2>
     <div class="chart-container">
         <div id="taxRateChart"></div>
     </div>
@@ -92,12 +92,19 @@
         };
 
         var layout = {
-            title: 'Historical Tax Rates',
+            title: 'Historical Tax Rates (2015-2022)',
             xaxis: { title: 'Year' },
             yaxis: { title: 'Tax Rate (%)' }
         };
 
-        Plotly.newPlot('taxRateChart', [traceCollin, tracePlano, traceAllen, traceFrisco, traceMcKinney], layout);
+        var modebarConfig = {
+            modeBarButtonsToRemove: ['pan2d', 'lasso2d', 'select2d', 'zoom2d', 'toImage', 'resetScale2d', 'toggleSpikelines'],
+            modeBarButtonsToAdd: [['zoomIn2d', 'zoomOut2d', 'resetScale2d', 'toImage', 'autoScale2d']],
+            displaylogo: false
+        };
+
+        Plotly.newPlot('taxRateChart', [traceCollin, tracePlano, traceAllen, traceFrisco, traceMcKinney], layout, modebarConfig);
     </script>
 </body>
 </html>
+
