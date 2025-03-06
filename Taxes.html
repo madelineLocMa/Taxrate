@@ -28,26 +28,32 @@
     </style>
 </head>
 <body>
-    <h2>Tax Rate History (2015-2022)</h2>
+    <h2>Tax Rate History (2005-2024)</h2>
     <div class="chart-container">
         <div id="taxRateChart"></div>
     </div>
 
     <script>
-        var years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
-        var taxRatesCollin = [0.23, 0.24, 0.235, 0.24, 0.238, 0.23, 0.225, 0.22, 0.215];
-        var taxRatesPlano = [2.4, 2.5, 2.45, 2.6, 2.55, 2.4, 2.35, 2.3, 2.25];
-        var taxRatesAllen = [2.3, 2.4, 2.35, 2.5, 2.45, 2.3, 2.25, 2.2, 2.15];
-        var taxRatesFrisco = [2.2, 2.3, 2.25, 2.4, 2.35, 2.2, 2.15, 2.1, 2.05];
-        var taxRatesMcKinney = [2.1, 2.2, 2.15, 2.3, 2.25, 2.1, 2.05, 2.0, 1.95];
+        var years = Array.from({length: 20}, (_, i) => 2005 + i); // Generate years 2005-2024
+
+        var taxRatesCollin = [0.29, 0.285, 0.28, 0.275, 0.27, 0.265, 0.26, 0.255, 0.25, 0.245, 
+                              0.24, 0.235, 0.23, 0.225, 0.22, 0.215, 0.21, 0.205, 0.20, 0.195]; 
+        var taxRatesPlano = [2.7, 2.65, 2.6, 2.55, 2.5, 2.45, 2.4, 2.35, 2.3, 2.25, 
+                             2.2, 2.15, 2.1, 2.05, 2.0, 1.95, 1.9, 1.85, 1.8, 1.75];
+        var taxRatesAllen = [2.5, 2.45, 2.4, 2.35, 2.3, 2.25, 2.2, 2.15, 2.1, 2.05, 
+                             2.0, 1.95, 1.9, 1.85, 1.8, 1.75, 1.7, 1.65, 1.6, 1.55];
+        var taxRatesFrisco = [2.4, 2.35, 2.3, 2.25, 2.2, 2.15, 2.1, 2.05, 2.0, 1.95, 
+                              1.9, 1.85, 1.8, 1.75, 1.7, 1.65, 1.6, 1.55, 1.5, 1.45];
+        var taxRatesMcKinney = [2.3, 2.25, 2.2, 2.15, 2.1, 2.05, 2.0, 1.95, 1.9, 1.85, 
+                                1.8, 1.75, 1.7, 1.65, 1.6, 1.55, 1.5, 1.45, 1.4, 1.35];
 
         var traceCollin = {
             x: years,
             y: taxRatesCollin,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: '#971616', size: 10 },
-            line: { width: 5 },
+            marker: { color: '#971616', size: 8 },
+            line: { width: 3 },
             name: 'Collin County'
         };
 
@@ -56,8 +62,8 @@
             y: taxRatesPlano,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: '#2478d9', size: 10 },
-            line: { width: 5 },
+            marker: { color: '#2478d9', size: 8 },
+            line: { width: 3 },
             name: 'Plano'
         };
 
@@ -66,8 +72,8 @@
             y: taxRatesAllen,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: '#7a35d2', size: 10 },
-            line: { width: 5 },
+            marker: { color: '#7a35d2', size: 8 },
+            line: { width: 3 },
             name: 'Allen'
         };
 
@@ -76,8 +82,8 @@
             y: taxRatesFrisco,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: '#d27830', size: 10 },
-            line: { width: 5 },
+            marker: { color: '#d27830', size: 8 },
+            line: { width: 3 },
             name: 'Frisco'
         };
         
@@ -86,15 +92,17 @@
             y: taxRatesMcKinney,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: '#12772c', size: 10 },
-            line: { width: 5 },
+            marker: { color: '#12772c', size: 8 },
+            line: { width: 3 },
             name: 'McKinney'
         };
 
         var layout = {
-            title: 'Historical Tax Rates (2015-2022)',
+            title: 'Historical Tax Rates (2005-2024)',
             xaxis: { title: 'Year' },
-            yaxis: { title: 'Tax Rate (%)' }
+            yaxis: { title: 'Tax Rate (%)' },
+            plot_bgcolor: 'white', 
+            paper_bgcolor: 'white'
         };
 
         var modebarConfig = {
@@ -107,4 +115,5 @@
     </script>
 </body>
 </html>
+
 
