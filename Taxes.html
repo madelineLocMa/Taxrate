@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Rate History</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: larger;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .chart-container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h2>Tax Rate History</h2>
+    <div class="chart-container">
+        <div id="taxRateChart"></div>
+    </div>
+
+    <script>
+        var years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+        var taxRatesCollin = [0.23, 0.24, 0.235, 0.24, 0.238, 0.23, 0.225, 0.22, 0.215];
+        var taxRatesPlano = [2.4, 2.5, 2.45, 2.6, 2.55, 2.4, 2.35, 2.3, 2.25];
+        var taxRatesAllen = [2.3, 2.4, 2.35, 2.5, 2.45, 2.3, 2.25, 2.2, 2.15];
+        var taxRatesFrisco = [2.2, 2.3, 2.25, 2.4, 2.35, 2.2, 2.15, 2.1, 2.05];
+        var taxRatesMcKinney = [2.1, 2.2, 2.15, 2.3, 2.25, 2.1, 2.05, 2.0, 1.95];
+
+        var traceCollin = {
+            x: years,
+            y: taxRatesCollin,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: { color: '#971616', size: 10 },
+            line: { width: 5 },
+            name: 'Collin County'
+        };
+
+        var tracePlano = {
+            x: years,
+            y: taxRatesPlano,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: { color: '#2478d9', size: 10 },
+            line: { width: 5 },
+            name: 'Plano'
+        };
+
+        var traceAllen = {
+            x: years,
+            y: taxRatesAllen,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: { color: '#7a35d2', size: 10 },
+            line: { width: 5 },
+            name: 'Allen'
+        };
+
+        var traceFrisco = {
+            x: years,
+            y: taxRatesFrisco,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: { color: '#d27830', size: 10 },
+            line: { width: 5 },
+            name: 'Frisco'
+        };
+        
+        var traceMcKinney = {
+            x: years,
+            y: taxRatesMcKinney,
+            type: 'scatter',
+            mode: 'lines+markers',
+            marker: { color: '#12772c', size: 10 },
+            line: { width: 5 },
+            name: 'McKinney'
+        };
+
+        var layout = {
+            title: 'Historical Tax Rates',
+            xaxis: { title: 'Year' },
+            yaxis: { title: 'Tax Rate (%)' }
+        };
+
+        Plotly.newPlot('taxRateChart', [traceCollin, tracePlano, traceAllen, traceFrisco, traceMcKinney], layout);
+    </script>
+</body>
+</html>
