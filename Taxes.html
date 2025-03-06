@@ -20,10 +20,11 @@
         .chart-container {
             width: 80%;
             margin: auto;
-            background: white;
+            background: transparent; /* No white box */
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: none; /* No drop shadow */
+            min-height: 400px; /* Ensures chart has space */
         }
     </style>
 </head>
@@ -101,8 +102,8 @@
             title: 'Historical Tax Rates (2005-2024)',
             xaxis: { title: 'Year' },
             yaxis: { title: 'Tax Rate (%)' },
-            plot_bgcolor: 'white', 
-            paper_bgcolor: 'white'
+            plot_bgcolor: 'rgba(0,0,0,0)',  // Transparent background
+            paper_bgcolor: 'rgba(0,0,0,0)'  // Transparent background
         };
 
         var modebarConfig = {
@@ -112,6 +113,14 @@
         };
 
         Plotly.newPlot('taxRateChart', [traceCollin, tracePlano, traceAllen, traceFrisco, traceMcKinney], layout, modebarConfig);
+
+        // Force Plotly to resize correctly
+        window.addEventListener('load', function() {
+            Plotly.relayout('taxRateChart', {
+                width: document.getElementById('taxRateChart').clientWidth,
+                height: document.getElementById('taxRateChart').clientHeight
+            });
+        });
     </script>
 </body>
 </html>
